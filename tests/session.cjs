@@ -23,6 +23,10 @@ const options = {
 function watch(page) {
   page.setDefaultTimeout(12000);
   page.on("pageerror", (error) => errors.push(error.message));
+  page.on("request", (request) => {
+    if (!["GET", "HEAD"].includes(request.method()))
+      errors.push("Unexpected outbound " + request.method());
+  });
   page.on("response", (response) => {
     const url = new URL(response.url());
     if (!["http:", "https:"].includes(url.protocol)) return;
@@ -38,11 +42,17 @@ function address(tail = "") {
 const button = (page, name) => page.getByRole("button", { name, exact: true });
 const link = (page, name) => page.getByRole("link", { name, exact: true });
 async function grab(page, name) {
-  if (evidence)
-    await page.screenshot({
-      path: path.join(evidence, name + ".png"),
-      animations: "disabled",
-    });
+  if (!evidence) return;
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await Promise.all(
+      Array.from(document.images, (img) => img.decode().catch(() => {})),
+    );
+  });
+  await page.screenshot({
+    path: path.join(evidence, name + ".png"),
+    animations: "disabled",
+  });
 }
 async function checkpoint(name, detail) {
   checkpoints.push({ name, detail });
