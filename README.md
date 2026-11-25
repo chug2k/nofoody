@@ -1,5 +1,7 @@
 # NoFoody
 
+[Chơi NoFoody trong trình duyệt](https://clpanic.com/nofoody/)
+
 Chọn món ở một quán tưởng tượng tại Sài Gòn hoặc Hà Nội. Tài xế Mây sẽ lách qua 47 chiếc xe máy và giao đến tận cửa… một biên lai. Mỗi chuyến mất khoảng 13 giây. Quán, món, giá và kcal đều là dữ liệu hư cấu. Thanh toán thực tế luôn là 0₫.
 
 Mục **Sổ đơn** lưu từng biên lai và tổng tiết kiệm giả lập trong trình duyệt đang dùng. Bạn có thể tải lại giỏ, đóng trình duyệt giữa chuyến hoặc mở lại một biên lai. Xóa dữ liệu trang web cũng xóa sổ trên thiết bị đó.
